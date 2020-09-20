@@ -27,6 +27,9 @@ void KS_type::vvod() {
 		cin >> temp_int;
 	}
 
+	cout << "Введите эффективность КС" << endl;
+	cin >> this->effectiveness;
+	
 	cout << "Ввод парамтеров завершен" << endl;
 
 }
@@ -41,6 +44,8 @@ void KS_type::vivod() {
 	cout << "Число цехов КС: " << this->workshop_number << endl;
 
 	cout << "Число работающих цехов КС: " << this->working_workshops << endl;
+
+	cout << "Эффективность КС: " << this->effectiveness << endl;
 
 }
 
@@ -106,4 +111,61 @@ void KS_type::number_working() {
 
 
 
+}
+
+void KS_type::save() {
+
+	ofstream fout("KS.txt"); // создаём объект класса ofstream для записи и связываем его с файлом truba.txt
+	// запись строк в файл
+	fout << this->id << "|" << this->name << "|" <<
+		this->workshop_number << "|" << this->working_workshops <<"|"<< this->effectiveness << "|" << ";";
+	fout.close(); // закрываем файл
+}
+
+void KS_type::load() {
+
+	string load_string; //строка в котрую считаем данные из файла
+	string temp_string; //временная строка
+	ifstream fin("KS.txt"); // открыли файл для чтения
+	getline(fin, load_string, ';'); // получили оттуда строку
+	fin.close(); // закрываем файл
+	//счетчики для цикла
+	int i = 0;
+	int j = 0;
+	temp_string = "";//инициализируем временную строку
+	while (true) {
+		if (load_string[i] != '|') {
+			temp_string += load_string[i];
+		}
+		else {
+			switch (j) {
+			case 0:
+				this->id = stoi(temp_string);
+				break;
+			case 1:
+				this->name = temp_string;
+				break;
+			case 2:
+				this->workshop_number = stoi(temp_string);
+				break;
+
+			case 3:
+				this->working_workshops = stoi(temp_string);
+				break;
+
+			case 4:
+				for (int k = 0; k < temp_string.length(); k++) {
+					if (temp_string[k] == '.') temp_string[k] = ',';
+				}
+				this->effectiveness = stod(temp_string);
+				break;
+			}
+
+			temp_string = "";
+			j++;
+		}
+		if (i + 1 <= load_string.length())i++;
+		else return;
+
+	}
 }

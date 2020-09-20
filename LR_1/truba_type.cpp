@@ -116,7 +116,54 @@ void truba_type::save() {
 	ofstream fout("truba.txt"); // создаём объект класса ofstream для записи и связываем его с файлом truba.txt
 	// запись строк в файл
 	fout << this->id<<"|"<< this->length << "|" <<
-		this->diameter << "|" <<this->in_servise << "|"; 
+		this->diameter << "|" <<this->in_servise << "|" << ";";
 	fout.close(); // закрываем файл
+}
+
+void truba_type::load() {
+
+	string load_string; //строка в котрую считаем данные из файла
+	string temp_string; //временная строка
+	ifstream fin("truba.txt"); // открыли файл для чтения
+	getline(fin, load_string, ';'); // получили оттуда строку
+	fin.close(); // закрываем файл
+	//счетчики для цикла
+	int i = 0;
+	int j = 0;
+	temp_string = "";//инициализируем временную строку
+	while (true) {
+		if (load_string[i] != '|') {
+			temp_string += load_string[i];
+		}
+		else {
+			switch (j) {
+			case 0:
+				this->id = stoi(temp_string);
+					break;
+			case 1:
+				for (int k=0;k< temp_string.length();k++) {
+					if (temp_string[k] == '.') temp_string[k] = ',';
+				}
+				this->length = stod(temp_string);
+					break;
+			case 2:
+				for (int k = 0; k < temp_string.length(); k++) {
+					if (temp_string[k] == '.') temp_string[k] = ',';
+				}
+				this->diameter = stod(temp_string);
+				break;
+
+			case 3:
+				this->in_servise = stoi(temp_string);
+				break;
+			}
+			
+			temp_string = "";
+			j++;
+		}
+		if (i + 1 < load_string.length())i++;
+		else return;
+		
+	}
 }
 

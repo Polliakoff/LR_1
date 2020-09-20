@@ -17,6 +17,7 @@ struct truba_type
 	void vivod();
 	void servise();
 	void save();
+	void load();
 
 };
 

@@ -2,6 +2,7 @@
 
 #include <iostream>;
 #include <string>;
+#include <fstream>;
 
 struct KS_type
 {
@@ -16,6 +17,8 @@ struct KS_type
 	void vvod();
 	void vivod();
 	void number_working();
+	void save();
+	void load();
 
 
 };
