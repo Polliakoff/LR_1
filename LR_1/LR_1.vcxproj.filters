@@ -18,12 +18,12 @@
     <ClCompile Include="main.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="truba.cpp">
+    <ClCompile Include="truba_type.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="truba.h">
+    <ClInclude Include="truba_type.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

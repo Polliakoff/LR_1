@@ -140,10 +140,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="truba.cpp" />
+    <ClCompile Include="truba_type.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="truba.h" />
+    <ClInclude Include="truba_type.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
