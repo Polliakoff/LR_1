@@ -15,5 +15,6 @@ struct truba_type
 	void vvod();
 	void vivod();
 
+
 };
 

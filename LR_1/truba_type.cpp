@@ -3,7 +3,7 @@
 using namespace std;
 
 void truba_type::vvod() {
-	cout << "¬ведите параметры дл€ “рубы:" << endl;
+	cout << endl << "¬ведите параметры дл€ “рубы:" << endl;
 
 	cout << "¬ведите id трубы" << endl;
 	cin >> this->id;
@@ -58,3 +58,4 @@ void truba_type::vivod() {
 
 
 }
+
