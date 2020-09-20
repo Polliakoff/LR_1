@@ -14,7 +14,7 @@ struct truba_type
 	//методы
 	void vvod();
 	void vivod();
-
+	void servise();
 
 };
 

@@ -15,6 +15,7 @@ struct KS_type
 	//методы	
 	void vvod();
 	void vivod();
+	void number_working();
 
 
 };

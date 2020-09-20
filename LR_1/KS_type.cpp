@@ -43,3 +43,67 @@ void KS_type::vivod() {
 	cout << "Число работающих цехов КС: " << this->working_workshops << endl;
 
 }
+
+void KS_type::number_working() {
+
+	string temp_string; //временная строка
+
+	cout << endl << "Хотите ли вы отключить/включить цех КС? (yes/no)" << endl;
+	cin >> temp_string;
+
+	while (true) {
+
+		if (temp_string == "yes") {
+			break;
+		}
+		else if (temp_string == "no") {
+			return;
+		}
+		else {
+			cout << "Введите 'yes' или 'no' (строчными буквами)";
+		}
+		cout << endl;
+		cin >> temp_string;
+	}
+
+
+
+
+	while (true) {
+		cout << endl << "Вы хотите отключить, включить цех или выйти? (on/off/quit)" << endl;
+		cin >> temp_string;
+		
+		if (temp_string == "on") {
+			if((this->working_workshops+1)<=this->workshop_number) this->working_workshops++;
+			else {
+				cout << "Достигнуто максимальное число работающих цехов";
+				continue;
+			}
+			break;
+		}
+		else if (temp_string == "off") {
+			if ((this->working_workshops - 1) >= 0) this->working_workshops--;
+			else {
+				cout << "Работающих цехов уже нет";
+				continue;
+			}
+			break;
+		}
+		
+		else if (temp_string == "quit") {
+			break;
+		}
+		
+		else {
+			cout << "Введите 'on', 'off' или 'quit' (строчными буквами)";
+		}
+		cout << endl;
+	}
+
+	cout << "Число работающих цехов на данный момент :" << this->working_workshops << endl;
+
+
+
+
+
+}
