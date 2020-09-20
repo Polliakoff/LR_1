@@ -39,3 +39,22 @@ void truba_type::vvod() {
 	cout << "Ввод парамтеров завершен"<<endl;
 
 }
+
+void truba_type::vivod() {
+	cout << endl <<"Параметры рассматриваемой Трубы:" << endl;
+
+	cout << "Id трубы : "<< this->id << endl;
+
+	cout << "Длина трубы: "<< this->length << endl;
+
+	cout << "Диаметр трубы: "<< this->diameter << endl;
+
+	string temp_string; //временная строка
+
+	if (this->in_servise == 1) temp_string = "yes";
+	else temp_string = "no";
+
+	cout << "В ремонте ли труба (yes/no) : "<< temp_string << endl;
+
+
+}

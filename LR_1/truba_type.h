@@ -11,8 +11,9 @@ struct truba_type
 	double diameter;
 	bool in_servise;
 
-	//метод
+	//методы
 	void vvod();
+	void vivod();
 
 };
 
