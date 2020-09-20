@@ -2,6 +2,7 @@
 
 #include <iostream>;
 #include <string>;
+#include <fstream>;
 
 struct truba_type
 {
@@ -15,6 +16,7 @@ struct truba_type
 	void vvod();
 	void vivod();
 	void servise();
+	void save();
 
 };
 

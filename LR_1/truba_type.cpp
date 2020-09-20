@@ -107,9 +107,16 @@ void truba_type::servise() {
 		else temp_string = "no";
 
 		cout << "В ремонте ли труба теперь (yes/no) : " << temp_string << endl;
-
-
-
-
 	
 }
+
+
+void truba_type::save() {
+	
+	ofstream fout("truba.txt"); // создаём объект класса ofstream для записи и связываем его с файлом truba.txt
+	// запись строк в файл
+	fout << this->id<<"|"<< this->length << "|" <<
+		this->diameter << "|" <<this->in_servise << "|"; 
+	fout.close(); // закрываем файл
+}
+
