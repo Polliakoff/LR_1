@@ -2,6 +2,17 @@
 
 using namespace std;
 
+
+truba_type::truba_type()
+{
+
+}
+
+truba_type::~truba_type()
+{
+
+}
+
 void truba_type::vvod() {
 	
 	string temp_string;//временная строка
@@ -79,7 +90,7 @@ void truba_type::vvod() {
 }
 
 void truba_type::vivod() {
-	cout << endl <<"Параметры рассматриваемой Трубы:" << endl;
+	cout << endl <<"Параметры рассматриваемой Трубы: " << endl;
 
 	cout << "Id трубы : "<< this->id << endl;
 
@@ -92,7 +103,7 @@ void truba_type::vivod() {
 	if (this->in_servise == 1) temp_string = "yes";
 	else temp_string = "no";
 
-	cout << "В ремонте ли труба (yes/no) : "<< temp_string << endl;
+	cout << "В ремонте ли труба (yes/no) : \t "<< temp_string << endl;
 
 
 }
@@ -193,6 +204,7 @@ void truba_type::load() {
 
 			case 3:
 				this->in_servise = stoi(temp_string);
+				cout << endl << "Труба успешно загружена из файла!"<<endl;
 				break;
 			}
 			
@@ -203,5 +215,7 @@ void truba_type::load() {
 		else return;
 		
 	}
+
+
 }
 

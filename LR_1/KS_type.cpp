@@ -1,6 +1,16 @@
 #include "KS_type.h"
 using namespace std;
 
+KS_type::KS_type()
+{
+
+}
+
+KS_type::~KS_type()
+{
+
+}
+
 void KS_type::vvod() {
 	string temp_string;//временная строка
 	
@@ -216,6 +226,7 @@ void KS_type::load() {
 					if (temp_string[k] == '.') temp_string[k] = ',';
 				}
 				this->effectiveness = stod(temp_string);
+				cout << endl << "КС успешно загружена из файла!" << endl;
 				break;
 			}
 
@@ -226,4 +237,5 @@ void KS_type::load() {
 		else return;
 
 	}
+
 }

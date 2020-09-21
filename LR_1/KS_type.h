@@ -20,6 +20,9 @@ struct KS_type
 	void number_working();
 	void save();
 	void load();
+	KS_type();
+	~KS_type();
+
 
 
 };

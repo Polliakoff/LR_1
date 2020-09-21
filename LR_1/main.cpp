@@ -54,8 +54,11 @@ int main() {
 		else if (selection == 2) {
 			//загрузка и отображение данных трубы
 			pipe_1.load();
-			pipe_1.vivod();
+			
 			KS_1.load();
+			
+			pipe_1.vivod();
+			
 			KS_1.vivod();
 			
 			break;

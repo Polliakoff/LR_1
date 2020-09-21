@@ -19,6 +19,8 @@ struct truba_type
 	void servise();
 	void save();
 	void load();
+	truba_type();
+	~truba_type();
 
 };
 
