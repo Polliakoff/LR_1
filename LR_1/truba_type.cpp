@@ -3,18 +3,56 @@
 using namespace std;
 
 void truba_type::vvod() {
+	
+	string temp_string;//временна€ строка
+
 	cout << endl << "¬ведите параметры дл€ “рубы:" << endl;
 
 	cout << "¬ведите id трубы" << endl;
-	cin >> this->id;
+
+	while (true) {
+		cin >> temp_string;
+
+		if (is_int(temp_string) == true) {
+			this->id = stoi(temp_string);
+			break;
+		}
+		else {
+			cout << "¬ведите целое число"<<endl;
+		}
+
+	}
 
 	cout << "¬ведите длину трубы" << endl;
-	cin >> this->length;
+
+	while (true) {
+		cin >> temp_string;
+
+		if (is_double(temp_string) == true) {
+			this->length = stod(temp_string);
+			break;
+		}
+		else {
+			cout << "¬ведите вещественное число" << endl;
+		}
+
+	}
 
 	cout << "¬ведите диаметр трубы" << endl;
-	cin >> this->diameter;
+	
+	while (true) {
+		cin >> temp_string;
 
-	string temp_string; //временна€ строка
+		if (is_double(temp_string) == true) {
+			this->diameter = stod(temp_string);
+			break;
+		}
+		else {
+			cout << "¬ведите вещественное число" << endl;
+		}
+
+	}
+
 	
 	cout << "¬ ремонте ли труба (yes/no)" << endl;
 	cin >> temp_string;

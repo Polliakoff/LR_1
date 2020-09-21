@@ -2,21 +2,67 @@
 using namespace std;
 
 void KS_type::vvod() {
+	string temp_string;//временная строка
+	
 	cout << endl << "Введите параметры для КС:" << endl;
 
 	cout << "Введите id КС" << endl;
-	cin >> this->id;
+	
+	while (true) {
+		cin >> temp_string;
+
+		if (is_int(temp_string) == true) {
+			this->id = stoi(temp_string);
+			break;
+		}
+		else {
+			cout << "Введите целое число" << endl;
+		}
+
+	}
 
 	cout << "Введите название КС" << endl;
 	cin >> this->name;
 
 	cout << "Введите число цехов КС" << endl;
-	cin >> this->workshop_number;
+	
+	while (true) {
+		cin >> temp_string;
+
+		if (is_int(temp_string) == true) {
+			this->workshop_number = stoi(temp_string);
+			break;
+		}
+		else {
+			cout << "Введите целое число" << endl;
+		}
+
+	}
 
 	int temp_int; //Временная целочисленая переменная
 	
 	cout << "Введите число работающих цехов КС (<= числа цехов)" << endl;
-	cin >> temp_int;
+
+	while (true) {
+		cin >> temp_string;
+
+		if (is_int(temp_string) == true) {
+			temp_int = stoi(temp_string);
+		}
+		else {
+			cout << "Введите целое число" << endl;
+			continue;
+		}
+
+		if (temp_int <= this->workshop_number) {
+			this->working_workshops = temp_int;
+			break;
+		}
+		else {
+			cout << "Введите число <= числа цехов" << endl;
+			continue;
+		}
+	}
 	
 	while (true) {
 		if (temp_int <= this->workshop_number) {
@@ -28,7 +74,19 @@ void KS_type::vvod() {
 	}
 
 	cout << "Введите эффективность КС" << endl;
-	cin >> this->effectiveness;
+	
+	while (true) {
+		cin >> temp_string;
+
+		if (is_double(temp_string) == true) {
+			this->effectiveness = stod(temp_string);
+			break;
+		}
+		else {
+			cout << "Введите вещественное число" << endl;
+		}
+
+	}
 	
 	cout << "Ввод парамтеров завершен" << endl;
 

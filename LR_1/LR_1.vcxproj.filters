@@ -24,12 +24,18 @@
     <ClCompile Include="KS_type.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="func.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="truba_type.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="KS_type.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="func.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

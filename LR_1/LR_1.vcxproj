@@ -139,11 +139,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="func.cpp" />
     <ClCompile Include="KS_type.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="truba_type.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="func.h" />
     <ClInclude Include="KS_type.h" />
     <ClInclude Include="truba_type.h" />
   </ItemGroup>
