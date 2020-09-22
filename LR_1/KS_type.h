@@ -7,12 +7,15 @@
 
 struct KS_type
 {
+	
+
 	//параметры
 	int id;
 	std::string name;
 	int workshop_number;
 	int working_workshops;
 	double effectiveness;
+	bool is_loaded = false;
 
 	//методы	
 	void vvod();
@@ -22,6 +25,9 @@ struct KS_type
 	void load();
 	KS_type();
 	~KS_type();
+
+
+
 
 
 

@@ -98,25 +98,31 @@ void KS_type::vvod() {
 
 	}
 	
+	this->is_loaded = true;
 	cout << "Ввод парамтеров завершен" << endl;
 
 }
 
 void KS_type::vivod() {
-	cout << endl << "Параметры рассматриваемой КС:" << endl;
+	if (this->is_loaded == true) {
+		cout << endl << "Параметры рассматриваемой КС:" << endl;
 
-	cout << "Id КС : " << this->id << endl;
+		cout << "Id КС : " << this->id << endl;
 
-	cout << "Название КС: " << this->name << endl;
+		cout << "Название КС: " << this->name << endl;
 
-	cout << "Число цехов КС: " << this->workshop_number << endl;
+		cout << "Число цехов КС: " << this->workshop_number << endl;
 
-	cout << "Число работающих цехов КС: " << this->working_workshops << endl;
+		cout << "Число работающих цехов КС: " << this->working_workshops << endl;
 
-	cout << "Эффективность КС: " << this->effectiveness << endl;
+		cout << "Эффективность КС: " << this->effectiveness << endl;
+	}
+	else {
+		cout << endl << "Структура КС пуста!" << endl;
+	}
 
 }
-
+//изменение кол-ва рабочих цехов
 void KS_type::number_working() {
 
 	string temp_string; //временная строка
@@ -180,7 +186,7 @@ void KS_type::number_working() {
 
 
 }
-
+//сохранение в файл
 void KS_type::save() {
 
 	ofstream fout("KS.txt"); // создаём объект класса ofstream для записи и связываем его с файлом truba.txt
@@ -189,12 +195,18 @@ void KS_type::save() {
 		this->workshop_number << "|" << this->working_workshops <<"|"<< this->effectiveness << "|" << ";";
 	fout.close(); // закрываем файл
 }
-
+//загрузка из файла
 void KS_type::load() {
 
 	string load_string; //строка в котрую считаем данные из файла
 	string temp_string; //временная строка
 	ifstream fin("KS.txt"); // открыли файл для чтения
+	//проверка на наличие файла
+	if (fin.is_open() == false) {
+		cout << endl << "ФАЙЛ 'KS.txt' НЕ НАЙДЕН!!!!!" << endl;
+		return;
+	}
+	
 	getline(fin, load_string, ';'); // получили оттуда строку
 	fin.close(); // закрываем файл
 	//счетчики для цикла
@@ -227,6 +239,7 @@ void KS_type::load() {
 				}
 				this->effectiveness = stod(temp_string);
 				cout << endl << "КС успешно загружена из файла!" << endl;
+				this->is_loaded = true;
 				break;
 			}
 

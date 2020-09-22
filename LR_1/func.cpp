@@ -1,5 +1,5 @@
 #include "func.h"
-
+//функци€ провер€юща€ строку на то записано ли в ней целое число
 bool is_int(std::string temp_string)
 {
 	for (int i = 0; i < temp_string.length(); i++) {
@@ -9,7 +9,7 @@ bool is_int(std::string temp_string)
 	}
 	return true;
 }
-
+//функци€ провер€юща€ строку на то записано ли в ней вещественное число
 bool is_double(std::string& temp_string)
 {
 	int dot_count = 0;

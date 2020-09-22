@@ -2,6 +2,7 @@
 #include "truba_type.h"
 #include "KS_type.h"
 #include <string>
+#include "func.h"
 using namespace std;
 
 
@@ -12,7 +13,7 @@ int main() {
 	truba_type pipe_1;
 	KS_type KS_1;
 	
-	int selection;
+	string selection; //переменная выбора режима работы
 
 	cout << "Вы хотите ввести данные или загрузить их из файла?" <<
 		endl << "1 - ввести и сохранить, 2 - загрузить" << endl;
@@ -20,53 +21,64 @@ int main() {
 	while (true) {
 
 		cin >> selection;
-		if (selection == 1) {
+
+		if (is_int(selection) == true) {
+
+			if (stoi(selection) == 1) {
 
 
 
-			//Ввод параметров трубы
-			pipe_1.vvod();
+				//Ввод параметров трубы
+				pipe_1.vvod();
 
-			//Вывод введенных параметров трубы
-			pipe_1.vivod();
+				//Вывод введенных параметров трубы
+				pipe_1.vivod();
 
-			//Изменение параметра трубы в ремонте/ не в ремонте
-			pipe_1.servise();
+				//Изменение параметра трубы в ремонте/ не в ремонте
+				pipe_1.servise();
 
-			//сохранение в файл параметров трубы
-			pipe_1.save();
+				//сохранение в файл параметров трубы
+				pipe_1.save();
 
-			//Ввод параметров КС
-			KS_1.vvod();
+				//Ввод параметров КС
+				KS_1.vvod();
 
-			//Вывод введенных параметров КС
-			KS_1.vivod();
+				//Вывод введенных параметров КС
+				KS_1.vivod();
 
-			//Изменение числа работающих цехов
-			KS_1.number_working();
+				//Изменение числа работающих цехов
+				KS_1.number_working();
 
-			//сохранение в файл параметров КС
-			KS_1.save();
+				//сохранение в файл параметров КС
+				KS_1.save();
 
-			break;
+				break;
+			}
+
+			else if (stoi(selection) == 2) {
+				//загрузка данных трубы
+				pipe_1.load();
+				//загрузка данных КС
+				KS_1.load();
+				//вывод данных трубы
+				pipe_1.vivod();
+				//вывод данных КС
+				KS_1.vivod();
+
+
+
+
+
+				break;
+			}
+
+			else {
+				cout << "введите цифру 1 или 2 для выбора действия" << endl;
+				continue;
+			}
 		}
-		
-		else if (selection == 2) {
-			//загрузка и отображение данных трубы
-			pipe_1.load();
-			
-			KS_1.load();
-			
-			pipe_1.vivod();
-			
-			KS_1.vivod();
-			
-			break;
-		}
-
 		else {
-			cout << "введите цифру 1 или 2 для выбора действия"<<endl;
-			continue;
+			cout << "введите цифру 1 или 2 для выбора действия" << endl;
 		}
 	}
 

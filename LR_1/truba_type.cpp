@@ -85,11 +85,13 @@ void truba_type::vvod() {
 		cin >> temp_string;
 	}
 
+	this->is_loaded = true;
 	cout << "Ввод парамтеров завершен"<<endl;
 
 }
 
 void truba_type::vivod() {
+	if (this->is_loaded == true) {
 	cout << endl <<"Параметры рассматриваемой Трубы: " << endl;
 
 	cout << "Id трубы : "<< this->id << endl;
@@ -104,10 +106,14 @@ void truba_type::vivod() {
 	else temp_string = "no";
 
 	cout << "В ремонте ли труба (yes/no) : \t "<< temp_string << endl;
+	}
+	else {
+		cout << endl << "Структура Труба пуста!" << endl;
+	}
 
 
 }
-
+//Изменения статуса в ремонте
 void truba_type::servise() {
 	
 	string temp_string; //временная строка
@@ -170,10 +176,16 @@ void truba_type::save() {
 }
 
 void truba_type::load() {
-
+	
 	string load_string; //строка в котрую считаем данные из файла
 	string temp_string; //временная строка
 	ifstream fin("truba.txt"); // открыли файл для чтения
+	//проверка на наличие файла
+	if (fin.is_open() == false) {
+		cout << endl << "ФАЙЛ 'truba.txt' НЕ НАЙДЕН!!!!"<< endl;
+		return;
+	}
+
 	getline(fin, load_string, ';'); // получили оттуда строку
 	fin.close(); // закрываем файл
 	//счетчики для цикла
@@ -205,6 +217,7 @@ void truba_type::load() {
 			case 3:
 				this->in_servise = stoi(temp_string);
 				cout << endl << "Труба успешно загружена из файла!"<<endl;
+				this->is_loaded = true;
 				break;
 			}
 			
@@ -215,7 +228,6 @@ void truba_type::load() {
 		else return;
 		
 	}
-
 
 }
 

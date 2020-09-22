@@ -12,6 +12,7 @@ struct truba_type
 	double length;
 	double diameter;
 	bool in_servise;
+	bool is_loaded= false;
 
 	//методы
 	void vvod();
