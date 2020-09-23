@@ -1,8 +1,9 @@
 #include "KS_type.h"
 using namespace std;
 
-KS_type::KS_type()
-{
+int KS_type::sId = 0;
+
+KS_type::KS_type() :id(sId++) {
 
 }
 
@@ -16,20 +17,7 @@ void KS_type::vvod() {
 	
 	cout << endl << "Введите параметры для КС:" << endl;
 
-	cout << "Введите id КС" << endl;
-	
-	while (true) {
-		cin >> temp_string;
 
-		if (is_int(temp_string) == true) {
-			this->id = stoi(temp_string);
-			break;
-		}
-		else {
-			cout << "Введите целое число" << endl;
-		}
-
-	}
 
 	cout << "Введите название КС" << endl;
 	cin >> this->name;
@@ -105,7 +93,7 @@ void KS_type::vvod() {
 
 void KS_type::vivod() {
 	if (this->is_loaded == true) {
-		cout << endl << "Параметры рассматриваемой КС:" << endl;
+		cout << endl << "Параметры КС " << this->id << endl;
 
 		cout << "Id КС : " << this->id << endl;
 
@@ -187,28 +175,20 @@ void KS_type::number_working() {
 
 }
 //сохранение в файл
-void KS_type::save() {
+void KS_type::save(std::ofstream& fout) {
 
-	ofstream fout("KS.txt"); // создаём объект класса ofstream для записи и связываем его с файлом truba.txt
-	// запись строк в файл
 	fout << this->id << "|" << this->name << "|" <<
-		this->workshop_number << "|" << this->working_workshops <<"|"<< this->effectiveness << "|" << ";";
-	fout.close(); // закрываем файл
+		this->workshop_number << "|" << this->working_workshops <<"|"<< this->effectiveness << "|"<<endl;
+
 }
 //загрузка из файла
-void KS_type::load() {
+void KS_type::load(std::ifstream& fin) {
 
 	string load_string; //строка в котрую считаем данные из файла
 	string temp_string; //временная строка
-	ifstream fin("KS.txt"); // открыли файл для чтения
-	//проверка на наличие файла
-	if (fin.is_open() == false) {
-		cout << endl << "ФАЙЛ 'KS.txt' НЕ НАЙДЕН!!!!!" << endl;
-		return;
-	}
 	
-	getline(fin, load_string, ';'); // получили оттуда строку
-	fin.close(); // закрываем файл
+	getline(fin, load_string); // получили оттуда строку
+
 	//счетчики для цикла
 	int i = 0;
 	int j = 0;

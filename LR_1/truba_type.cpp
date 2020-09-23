@@ -2,9 +2,9 @@
 
 using namespace std;
 
+int truba_type::sId = 0;
 
-truba_type::truba_type()
-{
+truba_type::truba_type():id(sId++) {
 
 }
 
@@ -18,21 +18,6 @@ void truba_type::vvod() {
 	string temp_string;//временная строка
 
 	cout << endl << "Введите параметры для Трубы:" << endl;
-
-	cout << "Введите id трубы" << endl;
-
-	while (true) {
-		cin >> temp_string;
-
-		if (is_int(temp_string) == true) {
-			this->id = stoi(temp_string);
-			break;
-		}
-		else {
-			cout << "Введите целое число"<<endl;
-		}
-
-	}
 
 	cout << "Введите длину трубы" << endl;
 
@@ -86,13 +71,14 @@ void truba_type::vvod() {
 	}
 
 	this->is_loaded = true;
+
 	cout << "Ввод парамтеров завершен"<<endl;
 
 }
 
 void truba_type::vivod() {
 	if (this->is_loaded == true) {
-	cout << endl <<"Параметры рассматриваемой Трубы: " << endl;
+	cout << endl <<"Параметры Трубы "<<this->id<< endl;
 
 	cout << "Id трубы : "<< this->id << endl;
 
@@ -166,28 +152,20 @@ void truba_type::servise() {
 }
 
 
-void truba_type::save() {
-	
-	ofstream fout("truba.txt"); // создаём объект класса ofstream для записи и связываем его с файлом truba.txt
-	// запись строк в файл
+void truba_type::save(std::ofstream& fout) {
+
 	fout << this->id<<"|"<< this->length << "|" <<
-		this->diameter << "|" <<this->in_servise << "|" << ";";
-	fout.close(); // закрываем файл
+		this->diameter << "|" <<this->in_servise << "|" <<endl;
+
 }
 
-void truba_type::load() {
+void truba_type::load(std::ifstream& fin) {
 	
 	string load_string; //строка в котрую считаем данные из файла
 	string temp_string; //временная строка
-	ifstream fin("truba.txt"); // открыли файл для чтения
-	//проверка на наличие файла
-	if (fin.is_open() == false) {
-		cout << endl << "ФАЙЛ 'truba.txt' НЕ НАЙДЕН!!!!"<< endl;
-		return;
-	}
 
-	getline(fin, load_string, ';'); // получили оттуда строку
-	fin.close(); // закрываем файл
+	getline(fin, load_string);// получили оттуда строку
+
 	//счетчики для цикла
 	int i = 0;
 	int j = 0;

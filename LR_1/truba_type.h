@@ -7,6 +7,13 @@
 
 struct truba_type
 {
+	//id
+private:
+	
+	static int sId;
+	
+public:	
+	
 	//параметры
 	int id;
 	double length;
@@ -18,8 +25,8 @@ struct truba_type
 	void vvod();
 	void vivod();
 	void servise();
-	void save();
-	void load();
+	void save(std::ofstream& fout);
+	void load(std::ifstream& fin);
 	truba_type();
 	~truba_type();
 
