@@ -156,6 +156,7 @@ void truba_type::save(std::ofstream& fout) {
 
 	fout << this->id<<"|"<< this->length << "|" <<
 		this->diameter << "|" <<this->in_servise << "|" <<endl;
+	cout << "Труба " << this->id << " Успешно Сохранена!" << endl;
 
 }
 
@@ -194,7 +195,7 @@ void truba_type::load(std::ifstream& fin) {
 
 			case 3:
 				this->in_servise = stoi(temp_string);
-				cout << endl << "Труба успешно загружена из файла!"<<endl;
+				cout << "Труба " << this->id << " Успешно Загружена!" << endl;
 				this->is_loaded = true;
 				break;
 			}

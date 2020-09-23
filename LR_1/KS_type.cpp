@@ -179,7 +179,7 @@ void KS_type::save(std::ofstream& fout) {
 
 	fout << this->id << "|" << this->name << "|" <<
 		this->workshop_number << "|" << this->working_workshops <<"|"<< this->effectiveness << "|"<<endl;
-
+	cout << "КС " << this->id << " Успешно Сохранена!" << endl;
 }
 //загрузка из файла
 void KS_type::load(std::ifstream& fin) {
@@ -218,7 +218,7 @@ void KS_type::load(std::ifstream& fin) {
 					if (temp_string[k] == '.') temp_string[k] = ',';
 				}
 				this->effectiveness = stod(temp_string);
-				cout << endl << "КС успешно загружена из файла!" << endl;
+				cout << "КС " << this->id << " Успешно Загружена!"<<endl;
 				this->is_loaded = true;
 				break;
 			}
