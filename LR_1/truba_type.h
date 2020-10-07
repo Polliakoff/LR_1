@@ -18,15 +18,15 @@ public:
 	int id;
 	double length;
 	double diameter;
-	bool in_servise;
-	bool is_loaded= false;
+	bool in_servise = false;
+	bool is_loaded = false;
 
 	//методы
 	void vvod();
 	void vivod();
 	void servise();
 	void save(std::ofstream& fout);
-	void load(std::ifstream& fin);
+	void load(std::ifstream& fin, std::string load_string);
 	truba_type();
 	~truba_type();
 

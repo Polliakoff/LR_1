@@ -20,7 +20,18 @@ void KS_type::vvod() {
 
 
 	cout << "Введите название КС" << endl;
-	cin >> this->name;
+	//cin >> this->name;
+	
+	while (true) {
+		cin >> temp_string;
+
+		for (auto i : temp_string) {
+			if (i = '|') {
+				cout << "Вы ввели зарезервированный символ |, введите другое нзвание" << endl;
+			}
+	   }
+
+	}
 
 	cout << "Введите число цехов КС" << endl;
 	
@@ -76,12 +87,12 @@ void KS_type::vvod() {
 	while (true) {
 		cin >> temp_string;
 
-		if (is_double(temp_string) == true) {
+		if (is_double(temp_string) == true && stod(temp_string)<=1) {
 			this->effectiveness = stod(temp_string);
 			break;
 		}
 		else {
-			cout << "Введите вещественное число" << endl;
+			cout << "Введите вещественное число меньше единицы" << endl;
 		}
 
 	}
@@ -177,31 +188,33 @@ void KS_type::number_working() {
 //сохранение в файл
 void KS_type::save(std::ofstream& fout) {
 
-	fout << this->id << "|" << this->name << "|" <<
+	fout << "k" << "|"<< this->id << "|" << this->name << "|" <<
 		this->workshop_number << "|" << this->working_workshops <<"|"<< this->effectiveness << "|"<<endl;
 	cout << "КС " << this->id << " Успешно Сохранена!" << endl;
 }
 //загрузка из файла
-void KS_type::load(std::ifstream& fin) {
+void KS_type::load(std::ifstream& fin, std::string load_string) {
 
-	string load_string; //строка в котрую считаем данные из файла
+	//string load_string; //строка в котрую считаем данные из файла
 	string temp_string; //временная строка
 	
-	getline(fin, load_string); // получили оттуда строку
+	//getline(fin, load_string); // получили оттуда строку
 
 	//счетчики для цикла
 	int i = 0;
 	int j = 0;
 	temp_string = "";//инициализируем временную строку
 	while (true) {
+
+		if (i > 1) {
 		if (load_string[i] != '|') {
 			temp_string += load_string[i];
 		}
 		else {
 			switch (j) {
-			case 0:
-				this->id = stoi(temp_string);
-				break;
+			//case 0:
+			//	//this->id = sId;
+			//	break;
 			case 1:
 				this->name = temp_string;
 				break;
@@ -218,7 +231,7 @@ void KS_type::load(std::ifstream& fin) {
 					if (temp_string[k] == '.') temp_string[k] = ',';
 				}
 				this->effectiveness = stod(temp_string);
-				cout << "КС " << this->id << " Успешно Загружена!"<<endl;
+				cout << "КС " << this->id << " Успешно Загружена!" << endl;
 				this->is_loaded = true;
 				break;
 			}
@@ -228,6 +241,11 @@ void KS_type::load(std::ifstream& fin) {
 		}
 		if (i + 1 <= load_string.length())i++;
 		else return;
+	}
+		else {
+			if (i + 1 < load_string.length())i++;
+			else return;
+		}
 
 	}
 

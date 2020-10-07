@@ -21,6 +21,8 @@ int main() {
 	string selection; //переменная выбора действия
 	int Lines = 0;//Число строк в файлах
 	bool prodolzhyt = true;//логическая переменная продолжения работы программы
+	vector<char> items;
+	char temp_char;
 
 	while (prodolzhyt == true) {
 
@@ -75,21 +77,22 @@ int main() {
 					for (auto i : pipes) {
 						if (i.id == stoi(id_selection)) {
 							correct_check = true;
-							cout << "Ви хотите изменить все параметры этой трубы или только статуc ремонта? (all/service)"<<endl;
+							cout << "Ви хотите изменить все параметры этой трубы или только статуc ремонта?"
+								<<endl<<"Все - 1, Статус ремонта - 2"<<endl;
 							while (true) {
 								cin >> temp_string;
-								if (temp_string == "all") {
+								if (temp_string == "1") {
 									i.vvod();
 									i.vivod();
 									break;
 								}
-								else if (temp_string == "service") {
+								else if (temp_string == "2") {
 									i.servise();
 									i.vivod();
 									break;
 								}
 								else {
-									cout << "Введите all или service строчными буквами "<<endl;
+									cout << "Введите 1 или 2 "<<endl;
 								}
 							}
 							break;
@@ -108,21 +111,22 @@ int main() {
 					for (auto i : KS_es) {
 						if (i.id == stoi(id_selection)) {
 							correct_check = true;
-							cout << "Ви хотите изменить все параметры этой КС или только количество работающих цехов ремонта? (all/workshops)" << endl;
+							cout << "Ви хотите изменить все параметры этой КС или только количество работающих цехов ремонта? " 
+								<< endl <<"Все - 1, Кол-во цехов - 2";
 							while (true) {
 								cin >> temp_string;
-								if (temp_string == "all") {
+								if (temp_string == "1") {
 									i.vvod();
 									i.vivod();
 									break;
 								}
-								else if (temp_string == "workshops") {
+								else if (temp_string == "2") {
 									i.number_working();
 									i.vivod();
 									break;
 								}
 								else {
-									cout << "Введите all или workshops строчными буквами "<<endl;
+									cout << "Введите 1 или 2 "<<endl;
 								}
 							}
 							break;
@@ -137,53 +141,67 @@ int main() {
 
 			case 6: {
 				//очистка файла
-				fout.open("truba.txt");
+				fout.open("save.txt");
 				fout << "";
 				fout.close();
 				//сохранение труб в файл
-				fout.open("truba.txt", std::ios::app);
+				fout.open("save.txt", std::ios::app);
 
 				for (auto i : pipes) {
 					i.save(fout);
 				}
-				fout.close();
+
+				//fout.close();
 
 				//очистка файла
-				fout.open("KS.txt");
-				fout << "";
-				fout.close();
-				//сохранение труб в файл
-				fout.open("KS.txt", std::ios::app);
+				//fout.open("KS.txt");
+				//fout << "";
+				//fout.close();
+
+				//сохранение КС в файл
+				//fout.open("save.txt", std::ios::app);
 
 				for (auto i : KS_es) {
 					i.save(fout);
 				}
+
 				fout.close();
 			}
 				break;
 
 			case 7: {
-				//для труб
 				//Посчитаем число строк в файлах сохранений
-				fin.open("truba.txt");
+				fin.open("save.txt");
 				
 				if (fin.is_open() == false) {
-					cout << endl << "ФАЙЛ 'truba.txt' НЕ НАЙДЕН!!!!" << endl;
+					cout << endl << "ФАЙЛ 'save.txt' НЕ НАЙДЕН!!!!" << endl;
 					break;
 				}
 
 				while (std::getline(fin, temp_string)) ++Lines;
+				
 				fin.close();
 				//Непосредственно сама загрузка
-				fin.open("truba.txt");
+				fin.open("save.txt");
 				if (Lines == 0) {
-					cout << endl << "Файл сохранений Труб Пуст. Загружать нечего." << endl;
+					cout << endl << "Файл сохранений Сохранений Пуст. Загружать нечего." << endl;
 				}
 				else {
 					for (int i = 0; i < Lines; i++) {
-						truba_type temp_truba;
-						temp_truba.load(fin);
-						pipes.push_back(temp_truba);
+						getline(fin, temp_string);
+						
+						if (temp_string[0] == 't') {
+							truba_type temp_truba;
+							temp_truba.load(fin, temp_string);
+							pipes.push_back(temp_truba);
+						}
+						else {
+							KS_type temp_KS;
+							temp_KS.load(fin, temp_string);
+							KS_es.push_back(temp_KS);
+						}
+
+
 					}
 				}
 				fin.close();
@@ -191,29 +209,29 @@ int main() {
 
 				//для КС
 				//Посчитаем число строк в файлах сохранений
-				fin.open("KS.txt");
+				//fin.open("KS.txt");
 
-				if (fin.is_open() == false) {
-					cout << endl << "ФАЙЛ 'KS.txt' НЕ НАЙДЕН!!!!" << endl;
-					break;
-				}
+				//if (fin.is_open() == false) {
+				//	cout << endl << "ФАЙЛ 'KS.txt' НЕ НАЙДЕН!!!!" << endl;
+				//	break;
+				//}
 
-				while (std::getline(fin, temp_string)) ++Lines;
-				fin.close();
-				//Непосредственно сама загрузка
-				fin.open("KS.txt");
-				if (Lines == 0) {
-					cout << endl << "Файл сохранений КС Пуст. Загружать нечего." << endl;
-				}
-				else {
-					for (int i = 0; i < Lines; i++) {
-						KS_type temp_KS;
-						temp_KS.load(fin);
-						KS_es.push_back(temp_KS);
-					}
-				}
-				fin.close();
-				Lines = 0;
+				//while (std::getline(fin, temp_string)) ++Lines;
+				//fin.close();
+				////Непосредственно сама загрузка
+				//fin.open("KS.txt");
+				//if (Lines == 0) {
+				//	cout << endl << "Файл сохранений КС Пуст. Загружать нечего." << endl;
+				//}
+				//else {
+				//	for (int i = 0; i < Lines; i++) {
+				//		KS_type temp_KS;
+				//		temp_KS.load(fin);
+				//		KS_es.push_back(temp_KS);
+				//	}
+				//}
+				//fin.close();
+				//Lines = 0;
 					
 
 
@@ -232,12 +250,6 @@ int main() {
 				cout << "введите цифру от 0 до 7 для выбора действия" << endl;
 			}
 
-
-
-
-
-
-
 			}
 		}
 		else {
@@ -246,28 +258,5 @@ int main() {
 		system("pause");
 		system("cls");
 	}
-
-
-	
-
-	
-
-	
-
-
-
-
-
-
-
-	
-
-
-
-
-
-	
-	
-
 	return 0;
 }
