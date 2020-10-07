@@ -21,7 +21,6 @@ int main() {
 	string selection; //переменная выбора действия
 	int Lines = 0;//Число строк в файлах
 	bool prodolzhyt = true;//логическая переменная продолжения работы программы
-	vector<char> items;
 	char temp_char;
 
 	while (prodolzhyt == true) {
@@ -178,17 +177,18 @@ int main() {
 					break;
 				}
 
-				while (std::getline(fin, temp_string)) ++Lines;
-				
-				fin.close();
+				//while (std::getline(fin, temp_string)) ++Lines;
+				//
+				//fin.close();
 				//Непосредственно сама загрузка
-				fin.open("save.txt");
-				if (Lines == 0) {
-					cout << endl << "Файл сохранений Сохранений Пуст. Загружать нечего." << endl;
-				}
-				else {
-					for (int i = 0; i < Lines; i++) {
-						getline(fin, temp_string);
+				//fin.open("save.txt");
+				//if (Lines == 0) {
+				//	cout << endl << "Файл сохранений Сохранений Пуст. Загружать нечего." << endl;
+				//}
+				//else {
+				while(std::getline(fin, temp_string)){
+					//for (int i = 0; i < Lines; i++) {
+						//getline(fin, temp_string);
 						
 						if (temp_string[0] == 't') {
 							truba_type temp_truba;
@@ -203,9 +203,9 @@ int main() {
 
 
 					}
-				}
+				//}
 				fin.close();
-				Lines = 0;
+				//Lines = 0;
 
 				//для КС
 				//Посчитаем число строк в файлах сохранений
