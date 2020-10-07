@@ -14,7 +14,7 @@ KS_type::~KS_type()
 
 void KS_type::vvod() {
 	string temp_string;//временная строка
-	
+	bool error;
 	cout << endl << "Введите параметры для КС:" << endl;
 
 
@@ -24,13 +24,18 @@ void KS_type::vvod() {
 	
 	while (true) {
 		cin >> temp_string;
-
+		error = false;
 		for (auto i : temp_string) {
-			if (i = '|') {
+			if (i == '|') {
 				cout << "Вы ввели зарезервированный символ |, введите другое нзвание" << endl;
+				error = true;
 			}
-	   }
+		}
 
+		if (error == false) {
+			this->name = temp_string;
+			break;
+		}
 	}
 
 	cout << "Введите число цехов КС" << endl;
