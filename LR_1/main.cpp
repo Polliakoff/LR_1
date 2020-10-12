@@ -10,20 +10,14 @@ using namespace std;
 
 int main() {
 	setlocale(LC_ALL, "Russian");
-	ofstream fout;//создание потока вывода в файл
-	ifstream fin;//создание потока вывода из файла
-	//объявление массивов пользовательских структур типов
+
+	//массивы классов
 	vector <truba_type> pipes;
 	vector <KS_type> KS_es;
-	string id_selection;
-	bool correct_check = false;//логическая переменная проверки правильности
-	string temp_string;//врмененная строковая переменная
-	string selection; //переменная выбора действия
-	int Lines = 0;//Число строк в файлах
-	bool prodolzhyt = true;//логическая переменная продолжения работы программы
-	char temp_char;
 
-	while (prodolzhyt == true) {
+	string temp_string;//врмененная строковая переменная (объявлена сверху т. к. используется повсеместно)
+
+	while (true) {
 
 		cout << "Выберите действие которое необходимо осуществить: " <<
 			endl << "1 - Добавить трубу " << endl << "2 - Добавить КС " << endl
@@ -31,7 +25,8 @@ int main() {
 					<< "5 - Редактировать КС " << endl << "6 - Сохранить (Файлы перезаписываются) " << endl 
 						<< "7 - Загрузить (Загруженные структуры добавятся к существующим и получат соответвующие ID)" 
 							<< endl << "0 - Выйти" << endl;
-
+		
+		string selection; //переменная выбора действия
 		cin >> selection;
 
 		if (is_int(selection) == true) {
@@ -71,6 +66,8 @@ int main() {
 
 			case 4: {
 				cout <<endl<< "Введите id Трубы, которую хотите редактировать "<<endl;
+				string id_selection;
+				bool correct_check;
 				cin >> id_selection;
 				if (is_int(id_selection) == true) {
 					for (auto i : pipes) {
@@ -105,6 +102,8 @@ int main() {
 				break;
 			case 5: {
 				cout << endl << "Введите id КС, которую хотите редактировать " << endl;
+				string id_selection;
+				bool correct_check;
 				cin >> id_selection;
 				if (is_int(id_selection) == true) {
 					for (auto i : KS_es) {
@@ -139,6 +138,7 @@ int main() {
 				break;
 
 			case 6: {
+				ofstream fout;
 				//очистка файла
 				fout.open("save.txt");
 				fout << "";
@@ -150,16 +150,6 @@ int main() {
 					i.save(fout);
 				}
 
-				//fout.close();
-
-				//очистка файла
-				//fout.open("KS.txt");
-				//fout << "";
-				//fout.close();
-
-				//сохранение КС в файл
-				//fout.open("save.txt", std::ios::app);
-
 				for (auto i : KS_es) {
 					i.save(fout);
 				}
@@ -169,7 +159,10 @@ int main() {
 				break;
 
 			case 7: {
-				//Посчитаем число строк в файлах сохранений
+				ifstream fin;//создание потока вывода из файла
+				
+							 //загрузка из файла
+
 				fin.open("save.txt");
 				
 				if (fin.is_open() == false) {
@@ -177,18 +170,7 @@ int main() {
 					break;
 				}
 
-				//while (std::getline(fin, temp_string)) ++Lines;
-				//
-				//fin.close();
-				//Непосредственно сама загрузка
-				//fin.open("save.txt");
-				//if (Lines == 0) {
-				//	cout << endl << "Файл сохранений Сохранений Пуст. Загружать нечего." << endl;
-				//}
-				//else {
 				while(std::getline(fin, temp_string)){
-					//for (int i = 0; i < Lines; i++) {
-						//getline(fin, temp_string);
 						
 						if (temp_string[0] == 't') {
 							truba_type temp_truba;
@@ -203,38 +185,8 @@ int main() {
 
 
 					}
-				//}
+			
 				fin.close();
-				//Lines = 0;
-
-				//для КС
-				//Посчитаем число строк в файлах сохранений
-				//fin.open("KS.txt");
-
-				//if (fin.is_open() == false) {
-				//	cout << endl << "ФАЙЛ 'KS.txt' НЕ НАЙДЕН!!!!" << endl;
-				//	break;
-				//}
-
-				//while (std::getline(fin, temp_string)) ++Lines;
-				//fin.close();
-				////Непосредственно сама загрузка
-				//fin.open("KS.txt");
-				//if (Lines == 0) {
-				//	cout << endl << "Файл сохранений КС Пуст. Загружать нечего." << endl;
-				//}
-				//else {
-				//	for (int i = 0; i < Lines; i++) {
-				//		KS_type temp_KS;
-				//		temp_KS.load(fin);
-				//		KS_es.push_back(temp_KS);
-				//	}
-				//}
-				//fin.close();
-				//Lines = 0;
-					
-
-
 
 
 
@@ -242,7 +194,7 @@ int main() {
 				break;
 			
 			case 0: {
-				prodolzhyt = false;
+				return 0;
 			}
 				break;
 

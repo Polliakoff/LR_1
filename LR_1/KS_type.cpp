@@ -13,14 +13,14 @@ KS_type::~KS_type()
 }
 
 void KS_type::vvod() {
+	
 	string temp_string;//временная строка
-	bool error;
+	bool error;//Логическая переменная использующаяся для определения ошибки
 	cout << endl << "Введите параметры для КС:" << endl;
 
 
 
 	cout << "Введите название КС" << endl;
-	//cin >> this->name;
 	
 	while (true) {
 		cin >> temp_string;
@@ -153,10 +153,10 @@ void KS_type::number_working() {
 
 
 	while (true) {
-		cout << endl << "Вы хотите отключить, включить цех или выйти? (on/off/quit)" << endl;
+		cout << endl << "Вы хотите отключить, включить цех или выйти? (+/-/q (quit))" << endl;
 		cin >> temp_string;
 		
-		if (temp_string == "on") {
+		if (temp_string == "+") {
 			if((this->working_workshops+1)<=this->workshop_number) this->working_workshops++;
 			else {
 				cout << "Достигнуто максимальное число работающих цехов";
@@ -164,7 +164,7 @@ void KS_type::number_working() {
 			}
 			break;
 		}
-		else if (temp_string == "off") {
+		else if (temp_string == "-") {
 			if ((this->working_workshops - 1) >= 0) this->working_workshops--;
 			else {
 				cout << "Работающих цехов уже нет";
@@ -173,12 +173,12 @@ void KS_type::number_working() {
 			break;
 		}
 		
-		else if (temp_string == "quit") {
+		else if (temp_string == "q") {
 			break;
 		}
 		
 		else {
-			cout << "Введите 'on', 'off' или 'quit' (строчными буквами)";
+			cout << "Введите '+', '-' или 'q' (строчными буквами)";
 		}
 		cout << endl;
 	}
@@ -200,10 +200,7 @@ void KS_type::save(std::ofstream& fout) {
 //загрузка из файла
 void KS_type::load(std::ifstream& fin, std::string load_string) {
 
-	//string load_string; //строка в котрую считаем данные из файла
 	string temp_string; //временная строка
-	
-	//getline(fin, load_string); // получили оттуда строку
 
 	//счетчики для цикла
 	int i = 0;
@@ -217,9 +214,7 @@ void KS_type::load(std::ifstream& fin, std::string load_string) {
 		}
 		else {
 			switch (j) {
-			//case 0:
-			//	//this->id = sId;
-			//	break;
+
 			case 1:
 				this->name = temp_string;
 				break;

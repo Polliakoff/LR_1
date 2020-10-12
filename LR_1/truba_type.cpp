@@ -49,26 +49,6 @@ void truba_type::vvod() {
 
 	}
 
-	
-	//cout << "В ремонте ли труба (yes/no)" << endl;
-	//cin >> temp_string;
-
-	//while (true) {
-
-	//	if (temp_string == "yes") {
-	//		this->in_servise = 1;
-	//		break;
-	//	}
-	//	else if (temp_string == "no") {
-	//		this->in_servise = 0;
-	//		break;
-	//	}
-	//	else {
-	//		cout << "Введите 'yes' или 'no' (строчными буквами)";
-	//	}
-	//	cout << endl;
-	//	cin >> temp_string;
-	//}
 
 	this->is_loaded = true;
 
@@ -162,10 +142,7 @@ void truba_type::save(std::ofstream& fout) {
 
 void truba_type::load(std::ifstream& fin, std::string load_string) {
 	
-	//string load_string; //строка в котрую считаем данные из файла
 	string temp_string; //временная строка
-
-	//getline(fin, load_string);// получили оттуда строку
 
 	//счетчики для цикла
 	int i = 0;
@@ -179,9 +156,6 @@ void truba_type::load(std::ifstream& fin, std::string load_string) {
 			}
 			else {
 				switch (j) {
-				//case 0:
-				//	//this->id = sId;
-				//	break;
 				case 1:
 					for (int k = 0; k < temp_string.length(); k++) {
 						if (temp_string[k] == '.') temp_string[k] = ',';
