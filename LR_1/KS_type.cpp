@@ -131,19 +131,19 @@ void KS_type::number_working() {
 
 	string temp_string; //временная строка
 
-	cout << endl << "Хотите ли вы отключить/включить цех КС? (yes/no)" << endl;
+	cout << endl << "Хотите ли вы отключить/включить цех КС? (y/n)" << endl;
 	cin >> temp_string;
 
 	while (true) {
 
-		if (temp_string == "yes") {
+		if (temp_string == "y") {
 			break;
 		}
-		else if (temp_string == "no") {
+		else if (temp_string == "n") {
 			return;
 		}
 		else {
-			cout << "Введите 'yes' или 'no' (строчными буквами)";
+			cout << "Введите 'y' или 'n' (строчными буквами)";
 		}
 		cout << endl;
 		cin >> temp_string;

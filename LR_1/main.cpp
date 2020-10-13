@@ -53,12 +53,17 @@ int main() {
 				break;
 			case 3: {
 
-				for (auto i : pipes) {
-					i.vivod();
+				if (pipes.size() == 0 && KS_es.size() == 0) {
+					cout << endl << "На данный момент в оперативной памяти нет ни одного объекта"<<endl;
 				}
+				else {
+					for (auto i : pipes) {
+						i.vivod();
+					}
 
-				for (auto i : KS_es) {
-					i.vivod();
+					for (auto i : KS_es) {
+						i.vivod();
+					}
 				}
 				
 			}
@@ -67,24 +72,24 @@ int main() {
 			case 4: {
 				cout <<endl<< "Введите id Трубы, которую хотите редактировать "<<endl;
 				string id_selection;
-				bool correct_check;
+				bool correct_check = false;
 				cin >> id_selection;
 				if (is_int(id_selection) == true) {
-					for (auto i : pipes) {
-						if (i.id == stoi(id_selection)) {
+					for (size_t i = 0; i < pipes.size();i++ ) {
+						if (pipes[i].id == stoi(id_selection)) {
 							correct_check = true;
-							cout << "Ви хотите изменить все параметры этой трубы или только статуc ремонта?"
-								<<endl<<"Все - 1, Статус ремонта - 2"<<endl;
+							cout << "Ви хотите изменить измерения этой трубы или только статуc ремонта?"
+								<<endl<<"Измерения - 1, Статус ремонта - 2"<<endl;
 							while (true) {
 								cin >> temp_string;
 								if (temp_string == "1") {
-									i.vvod();
-									i.vivod();
+									pipes[i].vvod();
+									pipes[i].vivod();
 									break;
 								}
 								else if (temp_string == "2") {
-									i.servise();
-									i.vivod();
+									pipes[i].servise();
+									pipes[i].vivod();
 									break;
 								}
 								else {
@@ -98,29 +103,32 @@ int main() {
 						cout << "Введите один из id cуществующих труб (можно посмотреть командой 3)"<<endl;
 					}
 				}
+				else {
+					cout << "Введите один из id cуществующих труб (можно посмотреть командой 3)" << endl;
+				}
 			}
 				break;
 			case 5: {
 				cout << endl << "Введите id КС, которую хотите редактировать " << endl;
 				string id_selection;
-				bool correct_check;
+				bool correct_check = false;
 				cin >> id_selection;
 				if (is_int(id_selection) == true) {
-					for (auto i : KS_es) {
-						if (i.id == stoi(id_selection)) {
+					for (size_t i = 0; i < KS_es.size(); i++) {
+						if (KS_es[i].id == stoi(id_selection)) {
 							correct_check = true;
-							cout << "Ви хотите изменить все параметры этой КС или только количество работающих цехов ремонта? " 
-								<< endl <<"Все - 1, Кол-во цехов - 2";
+							cout << "Ви хотите изменить все параметры этой КС или только количество работающих цехов? " 
+								<< endl <<"Все - 1, Кол-во цехов - 2"<<endl;
 							while (true) {
 								cin >> temp_string;
 								if (temp_string == "1") {
-									i.vvod();
-									i.vivod();
+									KS_es[i].vvod();
+									KS_es[i].vivod();
 									break;
 								}
 								else if (temp_string == "2") {
-									i.number_working();
-									i.vivod();
+									KS_es[i].number_working();
+									KS_es[i].vivod();
 									break;
 								}
 								else {
@@ -133,6 +141,9 @@ int main() {
 					if (correct_check == false) {
 						cout << "Введите один из id cуществующих КС (можно посмотреть командой 3)" << endl;
 					}
+				}
+				else {
+					cout << "Введите один из id cуществующих КС (можно посмотреть командой 3)" << endl;
 				}
 			}
 				break;
@@ -170,6 +181,11 @@ int main() {
 					break;
 				}
 
+				//проверим не пустой ли файл (зпгрузилось ли хоть что то)
+				size_t p_siz, k_siz;
+				p_siz = pipes.size();
+				k_siz = KS_es.size();
+				
 				while(std::getline(fin, temp_string)){
 						
 						if (temp_string[0] == 't') {
@@ -185,6 +201,10 @@ int main() {
 
 
 					}
+
+				if(p_siz == pipes.size() && k_siz == KS_es.size()){
+					cout << endl << "ФАЙЛ 'save.txt' ПУСТ!!!!" << endl;
+				}
 			
 				fin.close();
 
