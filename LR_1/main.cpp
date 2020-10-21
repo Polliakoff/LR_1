@@ -78,7 +78,7 @@ int main() {
 				if (cin.good() && !(id_selection - floor(id_selection))) {
 					cin.ignore(numeric_limits<streamsize>::max(), '\n');
 					for (size_t i = 0; i < pipes.size();i++ ) {
-						if (pipes[i].id == int(id_selection)) {
+						if (pipes[i].id == id_selection) {
 							correct_check = true;
 							cout << "Ви хотите изменить измерения этой трубы или только статуc ремонта?"
 								<<endl<<"Измерения - 1, Статус ремонта - 2"<<endl;
@@ -119,7 +119,7 @@ int main() {
 				cin >> id_selection;
 				if (cin.good() && !(id_selection - floor(id_selection))) {
 					for (size_t i = 0; i < KS_es.size(); i++) {
-						if (KS_es[i].id == int(id_selection)) {
+						if (KS_es[i].id == id_selection) {
 							correct_check = true;
 							cout << "Ви хотите изменить все параметры этой КС или только количество работающих цехов? " 
 								<< endl <<"Все - 1, Кол-во цехов - 2"<<endl;

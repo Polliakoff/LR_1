@@ -45,7 +45,7 @@ void KS_type::vvod() {
 
 		if (cin.good() && !(temp_double - floor(temp_double))) {
 			cin.ignore(numeric_limits<streamsize>::max(), '\n');
-			this->workshop_number = int(temp_double);
+			this->workshop_number = temp_double;
 			break;
 		}
 		else {
@@ -65,7 +65,7 @@ void KS_type::vvod() {
 
 		if (cin.good() && !(temp_double - floor(temp_double))) {
 			cin.ignore(numeric_limits<streamsize>::max(), '\n');
-			temp_int = int(temp_double);
+			temp_int = temp_double;
 		}
 		else {
 			cout << "¬ведите целое число" << endl;
