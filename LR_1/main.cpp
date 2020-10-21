@@ -5,6 +5,7 @@
 #include "func.h"
 #include <vector>
 #include <fstream>
+#include <limits>
 using namespace std;
 
 
@@ -26,12 +27,12 @@ int main() {
 						<< "7 - Загрузить (Загруженные структуры добавятся к существующим и получат соответвующие ID)" 
 							<< endl << "0 - Выйти" << endl;
 		
-		string selection; //переменная выбора действия
+		double selection; //переменная выбора действия
 		cin >> selection;
 
-		if (is_int(selection) == true) {
-
-			switch (stoi(selection)) {
+		if (cin.good() && !(selection - floor(selection))) {
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			switch (int(selection)) {
 
 			case 1:{
 				//создание новой пустой трубы и помещение ее в вектор труб
@@ -71,12 +72,13 @@ int main() {
 
 			case 4: {
 				cout <<endl<< "Введите id Трубы, которую хотите редактировать "<<endl;
-				string id_selection;
+				double id_selection;
 				bool correct_check = false;
 				cin >> id_selection;
-				if (is_int(id_selection) == true) {
+				if (cin.good() && !(id_selection - floor(id_selection))) {
+					cin.ignore(numeric_limits<streamsize>::max(), '\n');
 					for (size_t i = 0; i < pipes.size();i++ ) {
-						if (pipes[i].id == stoi(id_selection)) {
+						if (pipes[i].id == int(id_selection)) {
 							correct_check = true;
 							cout << "Ви хотите изменить измерения этой трубы или только статуc ремонта?"
 								<<endl<<"Измерения - 1, Статус ремонта - 2"<<endl;
@@ -105,17 +107,19 @@ int main() {
 				}
 				else {
 					cout << "Введите один из id cуществующих труб (можно посмотреть командой 3)" << endl;
+					cin.clear();
+					cin.ignore(numeric_limits<streamsize>::max(), '\n');
 				}
 			}
 				break;
 			case 5: {
 				cout << endl << "Введите id КС, которую хотите редактировать " << endl;
-				string id_selection;
+				double id_selection;
 				bool correct_check = false;
 				cin >> id_selection;
-				if (is_int(id_selection) == true) {
+				if (cin.good() && !(id_selection - floor(id_selection))) {
 					for (size_t i = 0; i < KS_es.size(); i++) {
-						if (KS_es[i].id == stoi(id_selection)) {
+						if (KS_es[i].id == int(id_selection)) {
 							correct_check = true;
 							cout << "Ви хотите изменить все параметры этой КС или только количество работающих цехов? " 
 								<< endl <<"Все - 1, Кол-во цехов - 2"<<endl;
@@ -144,6 +148,8 @@ int main() {
 				}
 				else {
 					cout << "Введите один из id cуществующих КС (можно посмотреть командой 3)" << endl;
+					cin.clear();
+					cin.ignore(numeric_limits<streamsize>::max(), '\n');
 				}
 			}
 				break;
@@ -226,6 +232,9 @@ int main() {
 		}
 		else {
 			cout << "введите цифру от 0 до 7 для выбора действия" << endl;
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
 		}
 		system("pause");
 		system("cls");

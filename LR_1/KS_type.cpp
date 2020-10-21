@@ -13,8 +13,8 @@ KS_type::~KS_type()
 }
 
 void KS_type::vvod() {
-	
-	string temp_string;//временная строка
+	string temp_string;
+	double temp_double;
 	bool error;//Логическая переменная использующаяся для определения ошибки
 	cout << endl << "Введите параметры для КС:" << endl;
 
@@ -41,14 +41,17 @@ void KS_type::vvod() {
 	cout << "Введите число цехов КС" << endl;
 	
 	while (true) {
-		cin >> temp_string;
+		cin >> temp_double;
 
-		if (is_int(temp_string) == true) {
-			this->workshop_number = stoi(temp_string);
+		if (cin.good() && !(temp_double - floor(temp_double))) {
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			this->workshop_number = int(temp_double);
 			break;
 		}
 		else {
 			cout << "Введите целое число" << endl;
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
 		}
 
 	}
@@ -58,13 +61,16 @@ void KS_type::vvod() {
 	cout << "Введите число работающих цехов КС (<= числа цехов)" << endl;
 
 	while (true) {
-		cin >> temp_string;
+		cin >> temp_double;
 
-		if (is_int(temp_string) == true) {
-			temp_int = stoi(temp_string);
+		if (cin.good() && !(temp_double - floor(temp_double))) {
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			temp_int = int(temp_double);
 		}
 		else {
 			cout << "Введите целое число" << endl;
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
 			continue;
 		}
 
@@ -77,27 +83,21 @@ void KS_type::vvod() {
 			continue;
 		}
 	}
-	
-	while (true) {
-		if (temp_int <= this->workshop_number) {
-			this->working_workshops = temp_int;
-			break;
-		}
-		else cout << "Введите число <= числа цехов"<<endl;
-		cin >> temp_int;
-	}
 
 	cout << "Введите эффективность КС" << endl;
 	
 	while (true) {
-		cin >> temp_string;
+		cin >> temp_double;
 
-		if (is_double(temp_string) == true && stod(temp_string)<=1) {
-			this->effectiveness = stod(temp_string);
+		if (cin.good() && temp_double>0 && temp_double<1) {
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			this->effectiveness = temp_double;
 			break;
 		}
 		else {
 			cout << "Введите вещественное число меньше единицы" << endl;
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
 		}
 
 	}
