@@ -4,6 +4,7 @@
 #include <string>;
 #include <fstream>;
 #include "func.h"
+#include <limits>
 
 struct truba_type
 {
