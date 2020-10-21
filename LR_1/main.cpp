@@ -2,7 +2,6 @@
 #include "truba_type.h"
 #include "KS_type.h"
 #include <string>
-#include "func.h"
 #include <vector>
 #include <fstream>
 #include <limits>

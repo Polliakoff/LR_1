@@ -3,7 +3,7 @@
 #include <iostream>;
 #include <string>;
 #include <fstream>;
-#include "func.h"
+
 #include <limits>
 
 struct KS_type
