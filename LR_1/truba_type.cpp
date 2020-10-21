@@ -15,26 +15,21 @@ truba_type::~truba_type()
 
 void truba_type::vvod() {
 	
-	double temp_double;//временна€ строка
+	string temp_string;//временна€ строка
 
 	cout << endl << "¬ведите параметры дл€ “рубы:" << endl;
 
 	cout << "¬ведите длину трубы" << endl;
 
 	while (true) {
-		cin >> temp_double;
+		cin >> temp_string;
 
-		if (cin.good()) {
-			cin.ignore(numeric_limits<streamsize>::max(), '\n');
-			this->length = temp_double;
+		if (is_double(temp_string) == true) {
+			this->length = stod(temp_string);
 			break;
 		}
 		else {
-
 			cout << "¬ведите вещественное число" << endl;
-
-			cin.clear();
-			cin.ignore(numeric_limits<streamsize>::max(), '\n');
 		}
 
 	}
@@ -42,17 +37,14 @@ void truba_type::vvod() {
 	cout << "¬ведите диаметр трубы" << endl;
 	
 	while (true) {
-		cin >> temp_double;
+		cin >> temp_string;
 
-		if (cin.good()) {
-			cin.ignore(numeric_limits<streamsize>::max(), '\n');
-			this->diameter = temp_double;
+		if (is_double(temp_string) == true) {
+			this->diameter = stod(temp_string);
 			break;
 		}
 		else {
 			cout << "¬ведите вещественное число" << endl;
-			cin.clear();
-			cin.ignore(numeric_limits<streamsize>::max(), '\n');
 		}
 
 	}
